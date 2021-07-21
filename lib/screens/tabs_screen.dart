@@ -10,31 +10,79 @@ class TabsScreen extends StatefulWidget {
 }
 
 class _TabsScreenState extends State<TabsScreen> {
+  final List<Map<String, Object>> _pages = [
+    {
+      'page': CategoriesScreen(),
+      'title': 'Categories',
+    },
+    {
+      'page': FavouritesScreen(),
+      'title': 'Favourites',
+    }
+  ];
+
+  int selectedPageIndex = 0;
+
+  void _selectPage(int index) {
+    setState(() {
+      selectedPageIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-        length: 2,
-        child: Scaffold(
-            appBar: AppBar(
-              title: Text('Meals'),
-              bottom: TabBar(
-                tabs: [
-                  Tab(
-                    icon: Icon(Icons.category),
-                    text: 'Categories',
-                  ),
-                  Tab(
-                    icon: Icon(Icons.star),
-                    text: 'Favourites',
-                  )
-                ],
-              ),
-            ),
-            body: TabBarView(
-              children: [
-                CategoriesScreen(),
-                FavouritesScreen(),
-              ],
-            )));
+    return Scaffold(
+      appBar: AppBar(
+        title: AppBar(
+          title: Text(_pages[selectedPageIndex]['title'] as String),
+        ),
+      ),
+      body: _pages[selectedPageIndex]['page'] as Widget,
+      bottomNavigationBar: BottomNavigationBar(
+        onTap: _selectPage,
+        backgroundColor: Theme.of(context).primaryColor,
+        unselectedItemColor: Colors.white,
+        selectedItemColor: Theme.of(context).accentColor,
+        currentIndex: selectedPageIndex,
+        // type: BottomNavigationBarType.shifting, //shifting animation
+        items: [
+          BottomNavigationBarItem(
+            backgroundColor: Theme.of(context).primaryColor,
+            icon: Icon(Icons.category),
+            title: const Text('Categories'),
+          ),
+          BottomNavigationBarItem(
+            backgroundColor: Theme.of(context).primaryColor,
+            icon: Icon(Icons.star),
+            title: const Text('Favourites'),
+          )
+        ],
+      ),
+    );
+    // this is right below of appbar
+    // return DefaultTabController(
+    //     length: 2,
+    //     child: Scaffold(
+    //         appBar: AppBar(
+    //           title: Text('Meals'),
+    //           bottom: TabBar(
+    //             tabs: [
+    //               Tab(
+    //                 icon: Icon(Icons.category),
+    //                 text: 'Categories',
+    //               ),
+    //               Tab(
+    //                 icon: Icon(Icons.star),
+    //                 text: 'Favourites',
+    //               )
+    //             ],
+    //           ),
+    //         ),
+    //         body: TabBarView(
+    //           children: [
+    //             CategoriesScreen(),
+    //             FavouritesScreen(),
+    //           ],
+    //         )));
   }
 }
