@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'screens/filters.screen.dart';
 import 'screens/tabs_screen.dart';
 import 'screens/meal_detail_screen.dart';
 import 'screens/category_meals_screen.dart';
@@ -25,11 +26,13 @@ class MyApp extends StatelessWidget {
                     fontSize: 20,
                     fontWeight: FontWeight.bold),
               )),
-      home: TabsScreen(),
-      // initialRoute: '/category-meals', change home
+      // home: TabsScreen(),
+      initialRoute: '/',
       routes: {
+        '/': (ctx) => TabsScreen(),
         CategoryMealsScreen.ROUTE_NAME: (ctx) => CategoryMealsScreen(),
-        MealDetailScreen.ROUTE_NAME: (ctx) => MealDetailScreen()
+        MealDetailScreen.ROUTE_NAME: (ctx) => MealDetailScreen(),
+        FiltersScreen.ROUTE_NAME: (ctx) => FiltersScreen()
       },
 
       // this is a dynamic way
