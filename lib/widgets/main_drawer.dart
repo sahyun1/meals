@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_complete_guide/screens/filters.screen.dart';
 
 class MainDrawer extends StatelessWidget {
+  const MainDrawer();
+
   Widget buildListTile(String title, IconData icon, Function tapHandler) {
     return ListTile(
       leading: Icon(
@@ -46,7 +48,8 @@ class MainDrawer extends StatelessWidget {
             Navigator.of(context).pushReplacementNamed('/');
           }),
           buildListTile('Filters', Icons.settings, () {
-            Navigator.of(context).pushReplacementNamed(FiltersScreen.ROUTE_NAME);
+            Navigator.of(context)
+                .pushReplacementNamed(FiltersScreen.ROUTE_NAME);
           })
         ],
       ),
